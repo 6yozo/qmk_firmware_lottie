@@ -13,7 +13,7 @@
 
 #include QMK_KEYBOARD_H
 #include <stdio.h>
-#include "lottie.h"
+#include "sequitap.h"
 #include "whu.h"
 #include "layers.h"
 #include "whu-layers.h"
