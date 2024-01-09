@@ -43,6 +43,6 @@ COMBO_ENABLE = no
 
 KEY_LOCK_ENABLE = yes       # Enables QK_LOCK (Hold down the next key pressed, until the key is pressed again)
 
-INTROSPECTION_KEYMAP_C = lottie.c # keymaps
+INTROSPECTION_KEYMAP_C = sequitap.c # keymaps
 
 $(info Finished executing user rules.mk)
