@@ -18,23 +18,24 @@
 // LRB = Left hand Index finger Bottom row
 // ROTH = Right hand Outer Thumb
 
-#define PROCESS_RECORD_CASE(KEY, KEY_CODE, LAYER) \
-case KEY:                                         \
-if (record->event.pressed) {                      \
-    register_code16(KEY_CODE);                    \
-} else {                                          \
-    unregister_code16(KEY_CODE);                  \
-}                                                 \
-layer_move(LAYER);                                \
-return false;
-
-#define PROCESS_RECORD_CASE_CW(KEY, LAYER)          \
+#define PROCESS_RECORD_CASE(KEY, KEY_CODE, LAYER)   \
     case KEY:                                       \
     if (record->event.pressed) {                    \
-        caps_word_on();                             \
+        register_code16(KEY_CODE);                  \
+    } else {                                        \
+        unregister_code16(KEY_CODE);                \
     }                                               \
     layer_move(LAYER);                              \
     return false;
+
+#define PROCESS_RECORD_CASE_CW(KEY, LAYER)      \
+    case KEY:                                   \
+    if (record->event.pressed) {                \
+        caps_word_on();                         \
+    }                                           \
+    layer_move(LAYER);                          \
+    return false;
+
 
 // The Hungarian BUNYA_DTM for Corne layout (HBDC) adapts BUNYA_DTM to
 // allow typing both English and Hungarian text on a 3x6+3 keyboard.
@@ -178,8 +179,8 @@ return false;
 #define WHU_NPAD_RTH  WHU_SPACE
 #define WHU_NPAD_RITH TO(WHU_RMOD)
 
-enum keyboard_keycodes {
-    WHU_LMOD_LOLT  = SAFE_RANGE,
+enum whu_keyboard_keycodes {
+    WHU_LMOD_LOLT  = WHU_SAFE_RANGE,
     WHU_LMOD_LLT,
     WHU_LMOD_LRT,
     WHU_LMOD_LMT,

@@ -39,3 +39,13 @@
 #define WHU_NUM 5
 #define WHU_FUN 6
 #define WHU_NPAD 7
+#define WHU_SAFE_RANGE SAFE_RANGE
+
+#define LHU_BASE 8
+#define LHU_LMOD 9 // Left modifiers
+#define LHU_RMOD 10 // Right modifiers
+#define LHU_NAV 11
+#define LHU_NUM 12
+#define LHU_FUN 13
+#define LHU_NPAD 14
+#define LHU_SAFE_RANGE (SAFE_RANGE + 450)

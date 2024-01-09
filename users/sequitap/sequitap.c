@@ -13,11 +13,12 @@
 
 #include QMK_KEYBOARD_H
 #include <stdio.h>
+#include "layers.h"
 #include "sequitap.h"
 #include "whu.h"
-#include "layers.h"
 #include "whu-layers.h"
-
+#include "lhu.h"
+#include "lhu-layers.h"
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [SYSTEM] = MAKE_LAYER(ALL, SYS),
@@ -28,6 +29,13 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [WHU_NUM] = MAKE_LAYER(WHU, NUM),
     [WHU_FUN] = MAKE_LAYER(WHU, FUN),
     [WHU_NPAD] = MAKE_LAYER(WHU, NPAD),
+    [LHU_BASE] = MAKE_LAYER(LHU, HBDC),
+    [LHU_LMOD] = MAKE_LAYER(LHU, LMOD),
+    [LHU_RMOD] = MAKE_LAYER(LHU, RMOD),
+    [LHU_NAV] = MAKE_LAYER(LHU, NAV),
+    [LHU_NUM] = MAKE_LAYER(LHU, NUM),
+    [LHU_FUN] = MAKE_LAYER(LHU, FUN),
+    [LHU_NPAD] = MAKE_LAYER(LHU, NPAD),
 };
 
 #if defined(ENCODER_ENABLE) && defined(ENCODER_MAP_ENABLE)
@@ -35,6 +43,31 @@ const uint16_t PROGMEM encoder_map[][NUM_ENCODERS][NUM_DIRECTIONS] = {
 
 };
 #endif // defined(ENCODER_ENABLE) && defined(ENCODER_MAP_ENABLE)
+
+char keylog_str[24] = {};
+
+const char code_to_name[60] = {
+    ' ', ' ', ' ', ' ', 'a', 'b', 'c', 'd', 'e', 'f',
+    'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p',
+    'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z',
+    '1', '2', '3', '4', '5', '6', '7', '8', '9', '0',
+    'R', 'E', 'B', 'T', '_', '-', '=', '[', ']', '\\',
+    '#', ';', '\'', '`', ',', '.', '/', ' ', ' ', ' '};
+
+void set_keylog(uint16_t keycode, keyrecord_t *record) {
+  char name = ' ';
+    if ((keycode >= QK_MOD_TAP && keycode <= QK_MOD_TAP_MAX) ||
+        (keycode >= QK_LAYER_TAP && keycode <= QK_LAYER_TAP_MAX)) { keycode = keycode & 0xFF; }
+  if (keycode < 60) {
+    name = code_to_name[keycode];
+  }
+
+  // update keylog
+  snprintf (keylog_str, sizeof(keylog_str), "%dx%d, k%2d : %c",
+            record->event.key.row, record->event.key.col,
+            keycode, name);
+}
+
 
 // Based on qmk_firmware\keyboards\crkbd\keymaps\default
 
@@ -70,31 +103,6 @@ void oled_render_layer_state(void) {
             oled_write_ln_P(PSTR("Adjust"), false);
             break;
     }
-}
-
-
-char keylog_str[24] = {};
-
-const char code_to_name[60] = {
-    ' ', ' ', ' ', ' ', 'a', 'b', 'c', 'd', 'e', 'f',
-    'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p',
-    'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z',
-    '1', '2', '3', '4', '5', '6', '7', '8', '9', '0',
-    'R', 'E', 'B', 'T', '_', '-', '=', '[', ']', '\\',
-    '#', ';', '\'', '`', ',', '.', '/', ' ', ' ', ' '};
-
-void set_keylog(uint16_t keycode, keyrecord_t *record) {
-  char name = ' ';
-    if ((keycode >= QK_MOD_TAP && keycode <= QK_MOD_TAP_MAX) ||
-        (keycode >= QK_LAYER_TAP && keycode <= QK_LAYER_TAP_MAX)) { keycode = keycode & 0xFF; }
-  if (keycode < 60) {
-    name = code_to_name[keycode];
-  }
-
-  // update keylog
-  snprintf (keylog_str, sizeof(keylog_str), "%dx%d, k%2d : %c",
-            record->event.key.row, record->event.key.col,
-            keycode, name);
 }
 
 void oled_render_keylog(void) {
@@ -135,6 +143,8 @@ bool oled_task_user(void) {
     return false;
 }
 
+#endif // OLED_ENABLE
+
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
   if (record->event.pressed) {
     set_keylog(keycode, record);
@@ -142,9 +152,8 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 
   switch(keycode) {
     RECORD_CASES(WHU)
+    RECORD_CASES(LHU)
   default:
       return true;
   }
 }
-
-#endif // OLED_ENABLE
