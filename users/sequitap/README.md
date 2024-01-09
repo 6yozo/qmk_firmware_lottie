@@ -161,5 +161,9 @@ SYM:
 
 Setup qmk cli
 ---
-qmk setup -H /home/gaspa/qmk_firmware_lottie 6yozo/qmk_firmware_lottie
-git remote set-url origin git@github.com:6yozo/qmk_firmware_lottie.git
+qmk setup -H /home/gaspa/qmk_firmware_sequitap 6yozo/qmk_firmware_sequitap
+git remote set-url origin git@github.com:6yozo/qmk_firmware_sequitap.git
+
+then do a test compilation:
+
+qmk compile -c -kb crkbd -km sequitap -e CONVERT_TO=elite_pi
