@@ -197,7 +197,7 @@
 #define ALL_SYS_LOLT KC_NO
 #define ALL_SYS_LLT  KC_NO
 #define ALL_SYS_LRT  KC_NO
-#define ALL_SYS_LMT  KC_NO
+#define ALL_SYS_LMT  TO(LHU_BASE)
 #define ALL_SYS_LIT  TO(WHU_BASE)
 #define ALL_SYS_LIIT KC_NO
 #define ALL_SYS_RIIT RGB_TOG
