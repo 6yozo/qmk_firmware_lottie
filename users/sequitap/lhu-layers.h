@@ -329,3 +329,6 @@ enum lhu_keyboard_keycodes {
     LHU_FUN_RITH,
 
 };
+
+#define LHU_PROCESS_RECORD_CASE_CARET(KEY, LAYER)   \
+    PROCESS_RECORD_CASE(KEY, LHU_CARET, LAYER)
