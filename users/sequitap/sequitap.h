@@ -22,6 +22,35 @@
 #define MAKE_LAYOUT(LAYOUT_ARGUMENT)  LAYOUT_split_3x6_3(LAYOUT_ARGUMENT)
 #define MAKE_LAYER(HOST, LAYER)  MAKE_LAYOUT(MAKE_LAYOUT_ARGUMENT(HOST, LAYER))
 
+#define PROCESS_RECORD_CASE(KEY, KEY_CODE, LAYER)   \
+    case KEY:                                       \
+    if (record->event.pressed) {                    \
+        register_code16(KEY_CODE);                  \
+    } else {                                        \
+        unregister_code16(KEY_CODE);                \
+    }                                               \
+    layer_move(LAYER);                              \
+    return false;
+
+#define PROCESS_RECORD_CASE2(KEY, STRING_TO_SEND, KEY_CODE, LAYER)  \
+    case KEY:                                                       \
+    if (record->event.pressed) {                                    \
+        SEND_STRING(SS_RALT("3"));                                  \
+        register_code16(KEY_CODE);                                  \
+    } else {                                                        \
+        unregister_code16(KEY_CODE);                                \
+    }                                                               \
+    layer_move(LAYER);                                              \
+    return false;
+
+#define PROCESS_RECORD_CASE_CW(KEY, LAYER)      \
+    case KEY:                                   \
+    if (record->event.pressed) {                \
+        caps_word_on();                         \
+    }                                           \
+    layer_move(LAYER);                          \
+    return false;
+
 //Implemented in Layout: PROCESS_RECORD_CASE(WHU_LMOD_LLH, OSM(MOD_LGUI), WHU_BASE)
 //Implemented in Layout: PROCESS_RECORD_CASE(WHU_LMOD_LRH, OSM(MOD_LALT), WHU_BASE)
 //Implemented in Layout: PROCESS_RECORD_CASE(WHU_LMOD_LMH, OSM(MOD_LCTL), WHU_BASE)
@@ -181,7 +210,7 @@
     PROCESS_RECORD_CASE(PREFIX##_FUN_LIIB, KC_NO, PREFIX##_BASE) \
     PROCESS_RECORD_CASE(PREFIX##_FUN_RIIB, PREFIX##_PAUS, PREFIX##_BASE) \
     PROCESS_RECORD_CASE(PREFIX##_FUN_RIB, PREFIX##_F9, PREFIX##_BASE) \
-    PROCESS_RECORD_CASE(PREFIX##_FUN_RMB, PREFIX##_CARET, PREFIX##_BASE) \
+    PREFIX##_PROCESS_RECORD_CASE_CARET(PREFIX##_FUN_RMB, PREFIX##_BASE) \
     PROCESS_RECORD_CASE(PREFIX##_FUN_RRB, PREFIX##_UNDER, PREFIX##_BASE) \
     PROCESS_RECORD_CASE(PREFIX##_FUN_RLB, PREFIX##_F11, PREFIX##_BASE) \
     PROCESS_RECORD_CASE(PREFIX##_FUN_ROLB, PREFIX##_ENT, PREFIX##_BASE) \

@@ -109,7 +109,7 @@
 #define LHU_HASH    ALGR(KC_X)
 #define LHU_DLLR    ALGR(KC_SCLN)
 #define LHU_PRCNT   S(KC_5)
-#define LHU_CARET   S(KC_GRV)
+#define LHU_CARET   ALGR(KC_3)
 #define LHU_AMPS    ALGR(KC_C)
 #define LHU_STAR    ALGR(KC_SLSH)
 #define LHU_LPAR    S(KC_8)
