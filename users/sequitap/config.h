@@ -72,3 +72,7 @@
 //    #define RGBLIGHT_SAT_STEP 17
 //    #define RGBLIGHT_VAL_STEP 17
 #endif
+
+#define LAYER_STATE_32BIT
+
+#define OLED_FONT_H "users/sequitap/sqt_logo.c"
