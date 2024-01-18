@@ -57,16 +57,16 @@
 
 // Function Keys
 
-#define WHU_F1      S(KC_F1)
-#define WHU_F2      S(KC_F2)
-#define WHU_F3      S(KC_F3)
+#define WHU_F1      KC_F1
+#define WHU_F2      KC_F2
+#define WHU_F3      KC_F3
 #define WHU_F4      KC_F4
 #define WHU_F5      KC_F5
 #define WHU_F6      KC_F6
 #define WHU_F7      KC_F7
 #define WHU_F8      KC_F8
 #define WHU_F9      KC_F9
-#define WHU_F10     S(KC_F10)
+#define WHU_F10     KC_F10
 #define WHU_F11     KC_F11
 #define WHU_F12     KC_F12
 
