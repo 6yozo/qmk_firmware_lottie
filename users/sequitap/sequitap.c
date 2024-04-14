@@ -90,11 +90,6 @@ oled_rotation_t oled_init_user(oled_rotation_t rotation) {
   return rotation;
 }
 
-#define L_BASE 0
-#define L_LOWER 2
-#define L_RAISE 4
-#define L_ADJUST 8
-
 void oled_render_layer_state(void) {
     if (IS_LAYER_ON_STATE(layer_state, SYSTEM))
         oled_write_ln_P(PSTR("SYSTEM"), false);
@@ -141,7 +136,7 @@ void oled_render_layer_state(void) {
     else if (IS_LAYER_ON_STATE(layer_state, MHU_NPAD))
         oled_write_ln_P(PSTR("Mac HU NPAD"), false);
     else
-        oled_write_ln_P(PSTR("Undefined"), false);
+        oled_write_ln_P(PSTR("Unknown layer"), false);
 
     // Host Keyboard LED Status
     led_t led_state = host_keyboard_led_state();
@@ -190,6 +185,55 @@ bool oled_task_user(void) {
 }
 
 #endif // OLED_ENABLE
+
+layer_state_t one_shot_layers[] = {ONE_SHOT_LAYERS};
+layer_state_t last_permanent_layer = 0;
+
+layer_state_t layer_state_set_user(layer_state_t state) {
+    layer_state_t layer = get_highest_layer(state);
+    layer_state_t is_one_shot = false;
+    size_t size = sizeof(one_shot_layers) / sizeof(*one_shot_layers);
+    for (size_t i = 0; i < size; i++) {
+        if (layer == one_shot_layers[i]) {
+            is_one_shot = true;
+            break;
+        }
+    }
+    if (!is_one_shot)
+        last_permanent_layer = layer;
+    switch (layer) {
+    case SYSTEM:
+        rgblight_setrgb (0xFF,  0x00, 0x00);
+        break;
+    case LHU_BASE:
+    case WHU_BASE:
+    case MHU_BASE:
+        rgblight_setrgb (0x00,  0x00, 0xFF);
+        break;
+    case LHU_NPAD:
+    case WHU_NPAD:
+    case MHU_NPAD:
+        rgblight_setrgb (0x00,  0xFF, 0x00);
+        break;
+    case LHU_NAV:
+    case WHU_NAV:
+    case MHU_NAV:
+        rgblight_setrgb (0x7A,  0x00, 0xFF);
+        break;
+    default:
+        rgblight_setrgb (0x00,  0xFF, 0xFF);
+        break;
+    }
+    return state;
+}
+
+uint16_t get_alt_repeat_key_keycode_user(uint16_t keycode, uint8_t mods) {
+    switch (keycode) {
+    case KC_R: return KC_L;
+    }
+
+    return KC_NO;
+}
 
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
   if (record->event.pressed) {
