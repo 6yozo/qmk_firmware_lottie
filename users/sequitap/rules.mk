@@ -35,13 +35,14 @@ AUDIO_ENABLE = no           # Audio output
 LTO_ENABLE = no             # if firmware size over limit, try this option
 RGBLIGHT_ENABLE = yes       # Enable WS2812 RGB underlight / Cannot use RGBLIGHT and RGB Matrix using WS2812 at the same time.
 RGB_MATRIX_ENABLE = no      # WS2812B
-OLED_ENABLE     = yes
+OLED_ENABLE = yes
 COMBO_ENABLE = no
 
 # EXTRAFLAGS += -Os # -flto does not have an effect, probably the same a LTO_ENABLE
                     # -Os does not have an effect
 
 KEY_LOCK_ENABLE = yes       # Enables QK_LOCK (Hold down the next key pressed, until the key is pressed again)
+REPEAT_KEY_ENABLE = yes     # Enables repeat and alternate repeat key
 
 INTROSPECTION_KEYMAP_C = sequitap.c # keymaps
 

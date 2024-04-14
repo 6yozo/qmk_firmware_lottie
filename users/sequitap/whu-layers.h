@@ -15,7 +15,7 @@
 
 // LOLT = Left hand Outer column Little finger Top row
 // RIIH = Right hand Inner column Index finger Home row
-// LRB = Left hand Index finger Bottom row
+// LIB = Left hand Index finger Bottom row
 // ROTH = Right hand Outer Thumb
 
 // The Hungarian BUNYA_DTM for Corne layout (HBDC) adapts BUNYA_DTM to
@@ -31,7 +31,7 @@
 #define WHU_HBDC_RIT  WHU_K
 #define WHU_HBDC_RMT  WHU_O
 #define WHU_HBDC_RRT  WHU_U
-#define WHU_HBDC_RLT  WHU_DOT
+#define WHU_HBDC_RLT  QK_AREP
 #define WHU_HBDC_ROLT WHU_I_ACUTE
 #define WHU_HBDC_LOLH TO(WHU_NUM)
 #define WHU_HBDC_LLH  WHU_N
@@ -44,8 +44,8 @@
 #define WHU_HBDC_RMH  WHU_A
 #define WHU_HBDC_RRH  WHU_E
 #define WHU_HBDC_RLH  WHU_I
-#define WHU_HBDC_ROLH TO(WHU_FUN)
-#define WHU_HBDC_LOLB WHU_U_DACUTE
+#define WHU_HBDC_ROLH TO(WHU_NUM)
+#define WHU_HBDC_LOLB TO(WHU_FUN)
 #define WHU_HBDC_LLB  WHU_X
 #define WHU_HBDC_LRB  WHU_Q
 #define WHU_HBDC_LMB  WHU_M
@@ -55,8 +55,8 @@
 #define WHU_HBDC_RIB  WHU_F
 #define WHU_HBDC_RMB  WHU_E_ACUTE
 #define WHU_HBDC_RRB  WHU_A_ACUTE
-#define WHU_HBDC_RLB  WHU_COMMA
-#define WHU_HBDC_ROLB WHU_U_DIARESIS
+#define WHU_HBDC_RLB  QK_REP
+#define WHU_HBDC_ROLB TO(WHU_FUN)
 #define WHU_HBDC_LITH TO(WHU_LMOD)
 #define WHU_HBDC_LTH  WHU_S
 #define WHU_HBDC_LOTH TO(SYSTEM)
@@ -74,18 +74,18 @@
 #define WHU_LMOD_LMH OSM(MOD_LCTL)
 #define WHU_LMOD_LIH OSM(MOD_LSFT)
 
-#define WHU_NAV_LOLT WHU_ESC
+#define WHU_NAV_LOLT KC_NO
 #define WHU_NAV_LLT  QK_LOCK
 #define WHU_NAV_LRT  WHU_INS
 #define WHU_NAV_LMT  KC_NO
 #define WHU_NAV_LIT  KC_NO
 #define WHU_NAV_LIIT KC_NO
-#define WHU_NAV_RIIT WHU_NUMLK
-#define WHU_NAV_RIT  WHU_APP
-#define WHU_NAV_RMT  KC_NO
-#define WHU_NAV_RRT  KC_NO
-#define WHU_NAV_RLT  KC_NO
-#define WHU_NAV_ROLT WHU_TAB
+#define WHU_NAV_RIIT KC_NO
+#define WHU_NAV_RIT  WHU_DEL
+#define WHU_NAV_RMT  WHU_ENT
+#define WHU_NAV_RRT  WHU_TAB
+#define WHU_NAV_RLT  WHU_ESC
+#define WHU_NAV_ROLT KC_NO
 #define WHU_NAV_LOLH TO(WHU_NUM)
 #define WHU_NAV_LLH  WHU_LGUI
 #define WHU_NAV_LRH  WHU_LALT
@@ -97,8 +97,8 @@
 #define WHU_NAV_RMH  WHU_DOWN
 #define WHU_NAV_RRH  WHU_UP
 #define WHU_NAV_RLH  WHU_RIGHT
-#define WHU_NAV_ROLH TO(WHU_FUN)
-#define WHU_NAV_LOLB WHU_DEL
+#define WHU_NAV_ROLH TO(WHU_NUM)
+#define WHU_NAV_LOLB TO(WHU_FUN)
 #define WHU_NAV_LLB  WHU_UNDO
 #define WHU_NAV_LRB  WHU_CUT
 #define WHU_NAV_LMB  WHU_COPY
@@ -109,7 +109,7 @@
 #define WHU_NAV_RMB  WHU_PGDN
 #define WHU_NAV_RRB  WHU_PGUP
 #define WHU_NAV_RLB  WHU_END
-#define WHU_NAV_ROLB WHU_ENT
+#define WHU_NAV_ROLB TO(WHU_FUN)
 #define WHU_NAV_LITH TO(WHU_LMOD)
 #define WHU_NAV_LTH  WHU_S
 #define WHU_NAV_LOTH TO(SYSTEM)
@@ -117,7 +117,7 @@
 #define WHU_NAV_RTH  WHU_SPACE
 #define WHU_NAV_RITH TO(WHU_RMOD)
 
-#define WHU_NPAD_LOLT WHU_ESC
+#define WHU_NPAD_LOLT WHU_NUMLK
 #define WHU_NPAD_LLT  WHU_AMPS
 #define WHU_NPAD_LRT  WHU_LT
 #define WHU_NPAD_LMT  WHU_LPAR
@@ -128,7 +128,7 @@
 #define WHU_NPAD_RMT  WHU_RPAR
 #define WHU_NPAD_RRT  WHU_GT
 #define WHU_NPAD_RLT  WHU_DOT
-#define WHU_NPAD_ROLT WHU_TAB
+#define WHU_NPAD_ROLT WHU_PENT
 #define WHU_NPAD_LOLH TO(WHU_NUM)
 #define WHU_NPAD_LLH  WHU_P6
 #define WHU_NPAD_LRH  WHU_P0
@@ -140,8 +140,8 @@
 #define WHU_NPAD_RMH  WHU_P3
 #define WHU_NPAD_RRH  WHU_P1
 #define WHU_NPAD_RLH  WHU_P7
-#define WHU_NPAD_ROLH TO(WHU_FUN)
-#define WHU_NPAD_LOLB WHU_DEL
+#define WHU_NPAD_ROLH TO(WHU_NUM)
+#define WHU_NPAD_LOLB TO(WHU_FUN)
 #define WHU_NPAD_LLB  WHU_PIPE
 #define WHU_NPAD_LRB  WHU_LBKT
 #define WHU_NPAD_LMB  WHU_RBKT
@@ -152,7 +152,7 @@
 #define WHU_NPAD_RMB  WHU_LBRC
 #define WHU_NPAD_RRB  WHU_RBRC
 #define WHU_NPAD_RLB  WHU_PDOT
-#define WHU_NPAD_ROLB WHU_PENT
+#define WHU_NPAD_ROLB TO(WHU_FUN)
 #define WHU_NPAD_LITH TO(WHU_LMOD)
 #define WHU_NPAD_LTH  WHU_HBDC_LTH
 #define WHU_NPAD_LOTH TO(SYSTEM)

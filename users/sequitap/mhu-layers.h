@@ -13,6 +13,11 @@
 
 #pragma once
 
+// LOLT = Left hand Outer column Little finger Top row
+// RIIH = Right hand Inner column Index finger Home row
+// LIB = Left hand Index finger Bottom row
+// ROTH = Right hand Outer Thumb
+
 // The Hungarian BUNYA_DTM for Corne layout (HBDC) adapts BUNYA_DTM to
 // allow typing both English and Hungarian text on a 3x6+3 keyboard.
 
@@ -26,7 +31,7 @@
 #define MHU_HBDC_RIT  MHU_K
 #define MHU_HBDC_RMT  MHU_O
 #define MHU_HBDC_RRT  MHU_U
-#define MHU_HBDC_RLT  MHU_DOT
+#define MHU_HBDC_RLT  QK_AREP
 #define MHU_HBDC_ROLT MHU_I_ACUTE
 #define MHU_HBDC_LOLH TO(MHU_NUM)
 #define MHU_HBDC_LLH  MHU_N
@@ -39,8 +44,8 @@
 #define MHU_HBDC_RMH  MHU_A
 #define MHU_HBDC_RRH  MHU_E
 #define MHU_HBDC_RLH  MHU_I
-#define MHU_HBDC_ROLH TO(MHU_FUN)
-#define MHU_HBDC_LOLB MHU_U_DACUTE
+#define MHU_HBDC_ROLH TO(MHU_NUM)
+#define MHU_HBDC_LOLB TO(MHU_FUN)
 #define MHU_HBDC_LLB  MHU_X
 #define MHU_HBDC_LRB  MHU_Q
 #define MHU_HBDC_LMB  MHU_M
@@ -50,8 +55,8 @@
 #define MHU_HBDC_RIB  MHU_F
 #define MHU_HBDC_RMB  MHU_E_ACUTE
 #define MHU_HBDC_RRB  MHU_A_ACUTE
-#define MHU_HBDC_RLB  MHU_COMMA
-#define MHU_HBDC_ROLB MHU_U_DIARESIS
+#define MHU_HBDC_RLB  QK_REP
+#define MHU_HBDC_ROLB TO(MHU_FUN)
 #define MHU_HBDC_LITH TO(MHU_LMOD)
 #define MHU_HBDC_LTH  MHU_S
 #define MHU_HBDC_LOTH TO(SYSTEM)
@@ -69,18 +74,18 @@
 #define MHU_LMOD_LMH OSM(MOD_LCTL)
 #define MHU_LMOD_LIH OSM(MOD_LSFT)
 
-#define MHU_NAV_LOLT MHU_ESC
+#define MHU_NAV_LOLT KC_NO
 #define MHU_NAV_LLT  QK_LOCK
 #define MHU_NAV_LRT  MHU_INS
 #define MHU_NAV_LMT  KC_NO
 #define MHU_NAV_LIT  KC_NO
 #define MHU_NAV_LIIT KC_NO
-#define MHU_NAV_RIIT MHU_NUMLK
-#define MHU_NAV_RIT  MHU_APP
-#define MHU_NAV_RMT  KC_NO
-#define MHU_NAV_RRT  KC_NO
-#define MHU_NAV_RLT  KC_NO
-#define MHU_NAV_ROLT MHU_TAB
+#define MHU_NAV_RIIT KC_NO
+#define MHU_NAV_RIT  MHU_DEL
+#define MHU_NAV_RMT  MHU_ENT
+#define MHU_NAV_RRT  MHU_TAB
+#define MHU_NAV_RLT  MHU_ESC
+#define MHU_NAV_ROLT KC_NO
 #define MHU_NAV_LOLH TO(MHU_NUM)
 #define MHU_NAV_LLH  MHU_LGUI
 #define MHU_NAV_LRH  MHU_LALT
@@ -92,8 +97,8 @@
 #define MHU_NAV_RMH  MHU_DOWN
 #define MHU_NAV_RRH  MHU_UP
 #define MHU_NAV_RLH  MHU_RIGHT
-#define MHU_NAV_ROLH TO(MHU_FUN)
-#define MHU_NAV_LOLB MHU_DEL
+#define MHU_NAV_ROLH TO(MHU_NUM)
+#define MHU_NAV_LOLB TO(MHU_FUN)
 #define MHU_NAV_LLB  MHU_UNDO
 #define MHU_NAV_LRB  MHU_CUT
 #define MHU_NAV_LMB  MHU_COPY
@@ -104,7 +109,7 @@
 #define MHU_NAV_RMB  MHU_PGDN
 #define MHU_NAV_RRB  MHU_PGUP
 #define MHU_NAV_RLB  MHU_END
-#define MHU_NAV_ROLB MHU_ENT
+#define MHU_NAV_ROLB TO(MHU_FUN)
 #define MHU_NAV_LITH TO(MHU_LMOD)
 #define MHU_NAV_LTH  MHU_S
 #define MHU_NAV_LOTH TO(SYSTEM)
@@ -112,7 +117,7 @@
 #define MHU_NAV_RTH  MHU_SPACE
 #define MHU_NAV_RITH TO(MHU_RMOD)
 
-#define MHU_NPAD_LOLT MHU_ESC
+#define MHU_NPAD_LOLT MHU_NUMLK
 #define MHU_NPAD_LLT  MHU_AMPS
 #define MHU_NPAD_LRT  MHU_LT
 #define MHU_NPAD_LMT  MHU_LPAR
@@ -123,7 +128,7 @@
 #define MHU_NPAD_RMT  MHU_RPAR
 #define MHU_NPAD_RRT  MHU_GT
 #define MHU_NPAD_RLT  MHU_DOT
-#define MHU_NPAD_ROLT MHU_TAB
+#define MHU_NPAD_ROLT MHU_PENT
 #define MHU_NPAD_LOLH TO(MHU_NUM)
 #define MHU_NPAD_LLH  MHU_P6
 #define MHU_NPAD_LRH  MHU_P0
@@ -135,8 +140,8 @@
 #define MHU_NPAD_RMH  MHU_P3
 #define MHU_NPAD_RRH  MHU_P1
 #define MHU_NPAD_RLH  MHU_P7
-#define MHU_NPAD_ROLH TO(MHU_FUN)
-#define MHU_NPAD_LOLB MHU_DEL
+#define MHU_NPAD_ROLH TO(MHU_NUM)
+#define MHU_NPAD_LOLB TO(MHU_FUN)
 #define MHU_NPAD_LLB  MHU_PIPE
 #define MHU_NPAD_LRB  MHU_LBKT
 #define MHU_NPAD_LMB  MHU_RBKT
@@ -147,7 +152,7 @@
 #define MHU_NPAD_RMB  MHU_LBRC
 #define MHU_NPAD_RRB  MHU_RBRC
 #define MHU_NPAD_RLB  MHU_PDOT
-#define MHU_NPAD_ROLB MHU_PENT
+#define MHU_NPAD_ROLB TO(MHU_FUN)
 #define MHU_NPAD_LITH TO(MHU_LMOD)
 #define MHU_NPAD_LTH  MHU_HBDC_LTH
 #define MHU_NPAD_LOTH TO(SYSTEM)
