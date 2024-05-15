@@ -16,7 +16,7 @@ $(info Executing user rules.mk)
 # SRC += source.c
 
 # Build Options from miryoku
-MOUSEKEY_ENABLE = no # Not necessary, but does not hurt
+MOUSEKEY_ENABLE = yes # Not necessary, but does not hurt
 EXTRAKEY_ENABLE = yes # Copy / Paste works because of it?
 AUTO_SHIFT_ENABLE = no # Key override does not take effect when auto shifting. I can press shift when needed NP.
 TAP_DANCE_ENABLE = no # Used by the double tap guard feature, I don't use it at the moment

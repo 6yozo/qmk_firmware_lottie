@@ -31,6 +31,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [WHU_NUM] = MAKE_LAYER(WHU, NUM),
     [WHU_FUN] = MAKE_LAYER(WHU, FUN),
     [WHU_NPAD] = MAKE_LAYER(WHU, NPAD),
+    [WHU_MOUSE] = MAKE_LAYER(WHU, MOUSE),
 
     [LHU_BASE] = MAKE_LAYER(LHU, HBDC),
     [LHU_LMOD] = MAKE_LAYER(LHU, LMOD),
@@ -39,6 +40,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [LHU_NUM] = MAKE_LAYER(LHU, NUM),
     [LHU_FUN] = MAKE_LAYER(LHU, FUN),
     [LHU_NPAD] = MAKE_LAYER(LHU, NPAD),
+    [LHU_MOUSE] = MAKE_LAYER(LHU, MOUSE),
 
     [MHU_BASE] = MAKE_LAYER(MHU, HBDC),
     [MHU_LMOD] = MAKE_LAYER(MHU, LMOD),
@@ -47,6 +49,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [MHU_NUM] = MAKE_LAYER(MHU, NUM),
     [MHU_FUN] = MAKE_LAYER(MHU, FUN),
     [MHU_NPAD] = MAKE_LAYER(MHU, NPAD),
+    [MHU_MOUSE] = MAKE_LAYER(MHU, MOUSE),
 };
 
 #if defined(ENCODER_ENABLE) && defined(ENCODER_MAP_ENABLE)
@@ -107,6 +110,8 @@ void oled_render_layer_state(void) {
         oled_write_ln_P(PSTR("Win HU FUN"), false);
     else if (IS_LAYER_ON_STATE(layer_state, WHU_NPAD))
         oled_write_ln_P(PSTR("Win HU NPAD"), false);
+    else if (IS_LAYER_ON_STATE(layer_state, WHU_MOUSE))
+        oled_write_ln_P(PSTR("Win HU MOUSE"), false);
     else if (IS_LAYER_ON_STATE(layer_state, LHU_BASE))
         oled_write_ln_P(PSTR("Lin HU BASE"), false);
     else if (IS_LAYER_ON_STATE(layer_state, LHU_LMOD))
@@ -121,6 +126,8 @@ void oled_render_layer_state(void) {
         oled_write_ln_P(PSTR("Lin HU FUN"), false);
     else if (IS_LAYER_ON_STATE(layer_state, LHU_NPAD))
         oled_write_ln_P(PSTR("Lin HU NPAD"), false);
+    else if (IS_LAYER_ON_STATE(layer_state, LHU_MOUSE))
+        oled_write_ln_P(PSTR("Lin HU MOUSE"), false);   
     else if (IS_LAYER_ON_STATE(layer_state, MHU_BASE))
         oled_write_ln_P(PSTR("Mac HU BASE"), false);
     else if (IS_LAYER_ON_STATE(layer_state, MHU_LMOD))
@@ -135,6 +142,8 @@ void oled_render_layer_state(void) {
         oled_write_ln_P(PSTR("Mac HU FUN"), false);
     else if (IS_LAYER_ON_STATE(layer_state, MHU_NPAD))
         oled_write_ln_P(PSTR("Mac HU NPAD"), false);
+    else if (IS_LAYER_ON_STATE(layer_state, MHU_MOUSE))
+        oled_write_ln_P(PSTR("Mac HU MOUSE"), false);
     else
         oled_write_ln_P(PSTR("Unknown layer"), false);
 
@@ -220,6 +229,11 @@ layer_state_t layer_state_set_user(layer_state_t state) {
     case MHU_NAV:
         rgblight_setrgb (0x7A,  0x00, 0xFF);
         break;
+    case LHU_MOUSE:
+    case WHU_MOUSE:
+    case MHU_MOUSE:
+        rgblight_setrgb (0x00,  0xFF, 0xFF);
+        break;        
     default:
         rgblight_setrgb (0x00,  0xFF, 0xFF);
         break;
