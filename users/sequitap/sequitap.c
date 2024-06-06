@@ -233,9 +233,9 @@ layer_state_t layer_state_set_user(layer_state_t state) {
     case WHU_MOUSE:
     case MHU_MOUSE:
         rgblight_setrgb (0x00,  0xFF, 0xFF);
-        break;        
+        break;
     default:
-        rgblight_setrgb (0x00,  0xFF, 0xFF);
+        rgblight_setrgb (0xFF,  0xFF, 0x00);
         break;
     }
     return state;
@@ -243,7 +243,11 @@ layer_state_t layer_state_set_user(layer_state_t state) {
 
 uint16_t get_alt_repeat_key_keycode_user(uint16_t keycode, uint8_t mods) {
     switch (keycode) {
-    case KC_R: return KC_L;
+    case KC_R: 
+        return KC_L;
+    case KC_S:
+        tap_code(KC_S);
+        return KC_I;
     }
 
     return KC_NO;
