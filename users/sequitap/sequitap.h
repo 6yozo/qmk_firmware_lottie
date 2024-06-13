@@ -15,9 +15,9 @@
 
 #define MAKE_LAYOUT_ARGUMENT(HOST, LAYER) \
     HOST##_##LAYER##_LOLT, HOST##_##LAYER##_LLT, HOST##_##LAYER##_LRT, HOST##_##LAYER##_LMT,  HOST##_##LAYER##_LIT, HOST##_##LAYER##_LIIT, HOST##_##LAYER##_RIIT, HOST##_##LAYER##_RIT, HOST##_##LAYER##_RMT, HOST##_##LAYER##_RRT, HOST##_##LAYER##_RLT, HOST##_##LAYER##_ROLT, \
-    HOST##_##LAYER##_LOLH, HOST##_##LAYER##_LLH, HOST##_##LAYER##_LRH,  HOST##_##LAYER##_LMH,  HOST##_##LAYER##_LIH, HOST##_##LAYER##_LIIH, HOST##_##LAYER##_RIIH, HOST##_##LAYER##_RIH, HOST##_##LAYER##_RMH, HOST##_##LAYER##_RRH, HOST##_##LAYER##_RLH, HOST##_##LAYER##_ROLH, \
-    HOST##_##LAYER##_LOLB, HOST##_##LAYER##_LLB, HOST##_##LAYER##_LRB,  HOST##_##LAYER##_LMB,  HOST##_##LAYER##_LIB, HOST##_##LAYER##_LIIB, HOST##_##LAYER##_RIIB, HOST##_##LAYER##_RIB, HOST##_##LAYER##_RMB, HOST##_##LAYER##_RRB, HOST##_##LAYER##_RLB, HOST##_##LAYER##_ROLB, \
-        HOST##_##LAYER##_LITH, HOST##_##LAYER##_LTH, HOST##_##LAYER##_LOTH, HOST##_##LAYER##_ROTH, HOST##_##LAYER##_RTH, HOST##_##LAYER##_RITH
+    HOST##_##LAYER##_LOLH, HOST##_##LAYER##_LLH, HOST##_##LAYER##_LRH, HOST##_##LAYER##_LMH,  HOST##_##LAYER##_LIH, HOST##_##LAYER##_LIIH, HOST##_##LAYER##_RIIH, HOST##_##LAYER##_RIH, HOST##_##LAYER##_RMH, HOST##_##LAYER##_RRH, HOST##_##LAYER##_RLH, HOST##_##LAYER##_ROLH, \
+    HOST##_##LAYER##_LOLB, HOST##_##LAYER##_LLB, HOST##_##LAYER##_LRB, HOST##_##LAYER##_LMB,  HOST##_##LAYER##_LIB, HOST##_##LAYER##_LIIB, HOST##_##LAYER##_RIIB, HOST##_##LAYER##_RIB, HOST##_##LAYER##_RMB, HOST##_##LAYER##_RRB, HOST##_##LAYER##_RLB, HOST##_##LAYER##_ROLB, \
+                                                                       HOST##_##LAYER##_LITH, HOST##_##LAYER##_LTH, HOST##_##LAYER##_LOTH, HOST##_##LAYER##_ROTH, HOST##_##LAYER##_RTH, HOST##_##LAYER##_RITH
 
 #define MAKE_LAYOUT(LAYOUT_ARGUMENT)  LAYOUT_split_3x6_3(LAYOUT_ARGUMENT)
 #define MAKE_LAYER(HOST, LAYER)  MAKE_LAYOUT(MAKE_LAYOUT_ARGUMENT(HOST, LAYER))
@@ -25,9 +25,7 @@
 #define PROCESS_RECORD_CASE(KEY, KEY_CODE, LAYER)   \
     case KEY:                                       \
     if (record->event.pressed) {                    \
-        register_code16(KEY_CODE);                  \
-    } else {                                        \
-        unregister_code16(KEY_CODE);                \
+        tap_code16(KEY_CODE);                       \
     }                                               \
     layer_move(LAYER);                              \
     return false;
@@ -36,9 +34,7 @@
     case KEY:                                                       \
     if (record->event.pressed) {                                    \
         SEND_STRING(SS_RALT("3"));                                  \
-        register_code16(KEY_CODE);                                  \
-    } else {                                                        \
-        unregister_code16(KEY_CODE);                                \
+        tap_code16(KEY_CODE);                                       \
     }                                                               \
     layer_move(LAYER);                                              \
     return false;
@@ -139,12 +135,12 @@
     PROCESS_RECORD_CASE(PREFIX##_NUM_LOLT, KC_NO, PREFIX##_BASE) \
     PROCESS_RECORD_CASE(PREFIX##_NUM_LLT, PREFIX##_AMPS, PREFIX##_BASE) \
     PROCESS_RECORD_CASE(PREFIX##_NUM_LRT, PREFIX##_LT, PREFIX##_BASE) \
-    PROCESS_RECORD_CASE(PREFIX##_NUM_LMT, PREFIX##_LPAR, PREFIX##_BASE) \
+    PROCESS_RECORD_CASE(PREFIX##_NUM_LMT, PREFIX##_LBRC, PREFIX##_BASE) \
     PROCESS_RECORD_CASE(PREFIX##_NUM_LIT, PREFIX##_EQUAL, PREFIX##_BASE) \
     PROCESS_RECORD_CASE(PREFIX##_NUM_LIIT, PREFIX##_SEMI, PREFIX##_BASE) \
     PROCESS_RECORD_CASE(PREFIX##_NUM_RIIT, PREFIX##_COLON, PREFIX##_BASE) \
     PROCESS_RECORD_CASE(PREFIX##_NUM_RIT, PREFIX##_DQT, PREFIX##_BASE) \
-    PROCESS_RECORD_CASE(PREFIX##_NUM_RMT, PREFIX##_RPAR, PREFIX##_BASE) \
+    PROCESS_RECORD_CASE(PREFIX##_NUM_RMT, PREFIX##_RBRC, PREFIX##_BASE) \
     PROCESS_RECORD_CASE(PREFIX##_NUM_RRT, PREFIX##_GT, PREFIX##_BASE) \
     PROCESS_RECORD_CASE(PREFIX##_NUM_RLT, PREFIX##_DOT, PREFIX##_BASE) \
     PROCESS_RECORD_CASE(PREFIX##_NUM_ROLT, KC_NO, PREFIX##_BASE) \
@@ -168,8 +164,8 @@
     PROCESS_RECORD_CASE(PREFIX##_NUM_LIIB, PREFIX##_PLUS, PREFIX##_BASE) \
     PROCESS_RECORD_CASE(PREFIX##_NUM_RIIB, PREFIX##_MINUS, PREFIX##_BASE) \
     PROCESS_RECORD_CASE(PREFIX##_NUM_RIB, PREFIX##_N9, PREFIX##_BASE) \
-    PROCESS_RECORD_CASE(PREFIX##_NUM_RMB, PREFIX##_LBRC, PREFIX##_BASE) \
-    PROCESS_RECORD_CASE(PREFIX##_NUM_RRB, PREFIX##_RBRC, PREFIX##_BASE) \
+    PROCESS_RECORD_CASE(PREFIX##_NUM_RMB, PREFIX##_LPAR, PREFIX##_BASE) \
+    PROCESS_RECORD_CASE(PREFIX##_NUM_RRB, PREFIX##_RPAR, PREFIX##_BASE) \
     PROCESS_RECORD_CASE(PREFIX##_NUM_RLB, PREFIX##_COMMA, PREFIX##_BASE) \
     PROCESS_RECORD_CASE(PREFIX##_NUM_ROLB, KC_NO, PREFIX##_FUN) \
     PROCESS_RECORD_CASE(PREFIX##_NUM_LITH, PREFIX##_O_DACUTE, last_permanent_layer) \
@@ -195,8 +191,8 @@
     PROCESS_RECORD_CASE(PREFIX##_FUN_LRH, PREFIX##_F10, PREFIX##_BASE) \
     PROCESS_RECORD_CASE(PREFIX##_FUN_LMH, PREFIX##_F2, PREFIX##_BASE) \
     PROCESS_RECORD_CASE(PREFIX##_FUN_LIH, PREFIX##_F4, PREFIX##_BASE) \
-    PROCESS_RECORD_CASE(PREFIX##_FUN_LIIH, PREFIX##_LBRC, PREFIX##_BASE) \
-    PROCESS_RECORD_CASE(PREFIX##_FUN_RIIH, PREFIX##_RBRC, PREFIX##_BASE) \
+    PROCESS_RECORD_CASE(PREFIX##_FUN_LIIH, KC_NO, PREFIX##_BASE) \
+    PROCESS_RECORD_CASE(PREFIX##_FUN_RIIH, KC_NO, PREFIX##_BASE) \
     PROCESS_RECORD_CASE(PREFIX##_FUN_RIH, PREFIX##_F5, PREFIX##_BASE) \
     PROCESS_RECORD_CASE(PREFIX##_FUN_RMH, PREFIX##_F3, PREFIX##_BASE) \
     PROCESS_RECORD_CASE(PREFIX##_FUN_RRH, PREFIX##_F1, PREFIX##_BASE) \
