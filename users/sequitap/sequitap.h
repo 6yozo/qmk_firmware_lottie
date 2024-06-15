@@ -24,27 +24,27 @@
 
 #define PROCESS_RECORD_CASE(KEY, KEY_CODE, LAYER)   \
     case KEY:                                       \
-    if (record->event.pressed) {                    \
-        tap_code16(KEY_CODE);                       \
-    }                                               \
-    layer_move(LAYER);                              \
-    return false;
+        if (record->event.pressed) {                \
+            tap_code16(KEY_CODE);                   \
+            layer_move(LAYER);                      \
+        }                                           \
+        return false;
 
 #define PROCESS_RECORD_CASE2(KEY, STRING_TO_SEND, KEY_CODE, LAYER)  \
     case KEY:                                                       \
-    if (record->event.pressed) {                                    \
-        SEND_STRING(SS_RALT("3"));                                  \
-        tap_code16(KEY_CODE);                                       \
-    }                                                               \
-    layer_move(LAYER);                                              \
-    return false;
-
+        if (record->event.pressed) {                                \
+            SEND_STRING(SS_RALT("3"));                              \
+            tap_code16(KEY_CODE);                                   \
+            layer_move(LAYER);                                      \
+        }                                                           \
+        return false;
+        
 #define PROCESS_RECORD_CASE_CW(KEY, LAYER)      \
     case KEY:                                   \
     if (record->event.pressed) {                \
         caps_word_on();                         \
+        layer_move(LAYER);                      \
     }                                           \
-    layer_move(LAYER);                          \
     return false;
 
 //Implemented in Layout: PROCESS_RECORD_CASE(WHU_LMOD_LLH, OSM(MOD_LGUI), WHU_BASE)
